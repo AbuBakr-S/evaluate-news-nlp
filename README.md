@@ -40,3 +40,13 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
     module.exports = {
     }
     ```
+
+3. Webpack Entry - Starting point to map asset tree
+    - The default location for the webpack entry point is `./src/index.js`. Depending on your file structure, you may have to change this to a custom entry point. For example, in `webpack.config.js`, mention the entry point as:
+    ```
+    module.exports = {
+        entry: './src/client/index.js'
+    }
+    ```
+    - To build the app, run `npm run build`
+    - After running the build command successfully, verify that a `dist` directory is created in the root, containing the bundled file `main.js`
