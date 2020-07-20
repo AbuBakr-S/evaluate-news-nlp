@@ -50,3 +50,29 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
     ```
     - To build the app, run `npm run build`
     - After running the build command successfully, verify that a `dist` directory is created in the root, containing the bundled file `main.js`
+
+4. Output and Loaders
+    - Hardcode a reference to your JS into the `index.html`. For example: `<script type="text/javascript" src="../../../dist/main.js"></script>`
+    - Install Babel to allow the use of `import` (ES6):
+    `npm i -D @babel/core @babel/preset-env babel-loader`
+    - Create a new file .babelrc in the root of the project. Fill it with this code:
+    `{ ‘presets’: ['@babel/preset-env'] }`
+    - Add Babel Loader to `webpack.config.js`
+    ```
+    module: {
+            rules: [
+                    {
+                        test: '/\.js$/',
+                        exclude: /node_modules/,
+                        loader: "babel-loader"
+                    }
+                ]
+    }
+    ```
+    - Import JS files into `index.js`. For example:
+    ```
+    import { checkForName } from './js/nameChecker'
+    import { handleSubmit } from './js/formHandler'
+    console.log(checkForName);
+    ```
+    - Delete the current `dist` folder and rerun the `build` command
