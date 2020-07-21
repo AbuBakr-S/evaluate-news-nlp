@@ -51,8 +51,9 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
     - To build the app, run `npm run build`
     - After running the build command successfully, verify that a `dist` directory is created in the root, containing the bundled file `main.js`
 
-4. Output and Loaders
+4. Output and Loaders - Transfer files of one type into another. Webpack only understands JS and JSON
     - Hardcode a reference to your JS into the `index.html`. For example: `<script type="text/javascript" src="../../../dist/main.js"></script>`
+    - Use Babel to convert vanilla.js into ES6 files
     - Install Babel to allow the use of `import` (ES6):
     `npm i -D @babel/core @babel/preset-env babel-loader`
     - Create a new file .babelrc in the root of the project. Fill it with this code:
@@ -62,7 +63,7 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
     module: {
             rules: [
                     {
-                        test: '/\.js$/',
+                        test: /\.js$/,
                         exclude: /node_modules/,
                         loader: "babel-loader"
                     }
@@ -75,4 +76,6 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
     import { handleSubmit } from './js/formHandler'
     console.log(checkForName);
     ```
-    - Delete the current `dist` folder and rerun the `build` command
+    - Delete the current `dist` folder and rerun the `build` command. Can use `rm -rf dist` in the Terminal
+    - The `rules` array will contain all of our loaders, each loader specifies what types of files it will run on by running a regex matcher - in the case above we are looking for all `.js` files - the `$` at the end simply means that nothing comes after that
+    - Exclude node modules to save time
