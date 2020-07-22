@@ -1,7 +1,10 @@
 # evaluate-news-nlp
 A web tool that allows users to run Natural Language Processing (NLP) on articles or blogs found on other websites.
 
-## Adding Webpack to a Project - Checklist
+# Adding Webpack to a Project - Checklist
+
+## Basics of Webpack
+
 1. Prerequisites
     - Make sure you have Node installed. Download [here](https://nodejs.org/en/download/)
     - Run `node -v` and `npm -v` to check versions
@@ -144,3 +147,11 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
         - Rerun `build` script
     Source Maps
         - Controls if and how source maps are generated. Source Maps are a neat method of getting access to the original source code when debugging compiled applications
+
+## Saas and Webpack
+
+1. Convert CSS files to Saas
+    - In the styles folder, convert all `.css` file extensions to `.scss`. CSS is valid Saas!
+
+2. Setup Saas with Webpack
+    - Utilise Webpack's loa
