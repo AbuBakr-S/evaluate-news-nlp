@@ -83,7 +83,7 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
 5. Plugins - Perform wider range of tasks like bundle optimisation, asset management, automatically adding asset references to an `html` file
     - Install the html webpack plugin: `npm i -D html-webpack-plugin`
     - Require the plugin at the top of weboack config: `const HtmlWebpackPlugin = require('html-webpack-plugin')`
-    - Add a plugins list to the webpack config and instantiate the plugin:
+    - Add a plugins list to the webpack config under `module.exports` and instantiate the plugin:
     ```
     plugins: [
         new HtmlWebpackPlugin({
@@ -114,7 +114,33 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
     - `package.json` Changes:
     "scripts": {
         "build-prod": "webpack --config webpack.prod.js",
-        "build-dev": "webpack-dev-server --config webpack.dev.js --open"
+        "build-dev": "webpack --config webpack.dev.js"
     }
     - Remove `"build": "webpack"` script from `package.json`
     - `npm run build-dev`
+
+7. Convenience in Webpack
+    Hot Reload
+        - Webpack Dev Server helps in live reloading of the page, only for Development mode, and automatically re-builds the application
+        - Install the Webpack Dev Server: `npm i -D webpack-dev-server`
+        - Change `build-dev` script in `package.json` to `"build-dev": "webpack-dev-server --config webpack.dev.js --open"`. This will open a new browser window with our app running
+    Old Code in Dist Folder
+        - When you rebuild, new code will be added to the bundled files, but if there was old code that you got rid of, webpack build does not remove the old stuff
+        - The webpack plugin called `Clean` will remove all files inside webpack's `output.path` directory, as well as all unused webpack assets after every successful rebuild
+        - Install the Clean Webpack Plugin `npm i -D clean-webpack-plugin`
+        - Require the plugin at the top of the config file: `const { CleanWebpackPlugin } = require('clean-webpack-plugin');`
+        - Add the plugin to Plugins array in the `module.exports` in webpack.de
+        ```
+        new CleanWebpackPlugin({
+                // Simulate the removal of files
+                dry: true,
+                // Write Logs to Console
+                verbose: true,
+                // Automatically remove all unused webpack assets on rebuild
+                cleanStaleWebpackAssets: true,
+                protectWebpackAssets: false
+        })
+        ```
+        - Rerun `build` script
+    Source Maps
+        - Controls if and how source maps are generated. Source Maps are a neat method of getting access to the original source code when debugging compiled applications
