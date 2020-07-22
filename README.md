@@ -154,4 +154,15 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
     - In the styles folder, convert all `.css` file extensions to `.scss`. CSS is valid Saas!
 
 2. Setup Saas with Webpack
-    - Utilise Webpack's loa
+    - Utilise Webpack's loaders to turn Saas into CSS
+    - Install 3 loaders: `npm i -D style-loader node-sass css-loader sass-loader`
+    - Add this `test` case to the `rules` array in your dev webpack config
+    ```
+    {
+        test: /\.scss$/,
+        use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+    }
+    ```
+    - Webpack loaders are chainable, like the example above, going from right to left. The final output is added to the bundled index.js file 
+    - Import Saas Files into `index.js` to ensure webpack correctly builds the entire dependency tree
+    - Run webpack and look for your styles in the bundled js file, `main.js`
