@@ -79,3 +79,26 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
     - Delete the current `dist` folder and rerun the `build` command. Can use `rm -rf dist` in the Terminal
     - The `rules` array will contain all of our loaders, each loader specifies what types of files it will run on by running a regex matcher - in the case above we are looking for all `.js` files - the `$` at the end simply means that nothing comes after that
     - Exclude node modules to save time
+
+5. Plugins - Perform wider range of tasks like bundle optimisation, asset management, automatically adding asset references to an `html` file
+    - Install the html webpack plugin: `npm i -D html-webpack-plugin`
+    - Require the plugin at the top of weboack config: `const HtmlWebpackPlugin = require('html-webpack-plugin')`
+    - Add a plugins list to the webpack config and instantiate the plugin:
+    ```
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: "./src/client/views/index.html",
+            filename: "./index.html",
+        })
+    ]
+    ```
+    - Run webpack and observe new `dist` folder output
+    - Update server file. Change the home route to use the index file form `dist`:
+      ```
+      app.get('/', function (req, res){
+          res.sendFile('dist/index.html')
+      })
+      ```
+    - Upload server file to look for asset files in the `dist` instead of client. In `<project_root_directory>/src/server/index.js` file, change path:
+    From: `app.use(express.static('src/client'))` To: `app.use(express.static('dist'))`
+    - Run the server
