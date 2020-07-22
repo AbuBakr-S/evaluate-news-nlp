@@ -102,3 +102,19 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
     - Upload server file to look for asset files in the `dist` instead of client. In `<project_root_directory>/src/server/index.js` file, change path:
     From: `app.use(express.static('src/client'))` To: `app.use(express.static('dist'))`
     - Run the server
+
+6. Mode
+    - Config Changes:
+        1. PROD - Create a copy of the `webpack.config.js`, and rename it as `webpack.prod.js`. This file should have mode: `'production'` statement in `module.exports`
+        2. DEV - Now, rename the `webpack.config.js` to `webpack.dev.js`. This file should have the following statements in `module.exports`:
+        ```
+        mode: 'development',
+        devtool: 'source-map'
+        ```
+    - `package.json` Changes:
+    "scripts": {
+        "build-prod": "webpack --config webpack.prod.js",
+        "build-dev": "webpack-dev-server --config webpack.dev.js --open"
+    }
+    - Remove `"build": "webpack"` script from `package.json`
+    - `npm run build-dev`
