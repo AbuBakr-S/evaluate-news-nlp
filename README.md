@@ -166,3 +166,40 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
     - Webpack loaders are chainable, like the example above, going from right to left. The final output is added to the bundled index.js file 
     - Import Saas Files into `index.js` to ensure webpack correctly builds the entire dependency tree
     - Run webpack and look for your styles in the bundled js file, `main.js`
+    - Prepare `webpack.prod.js` by adding the same test case in the module.exports module rules
+    
+## Final Touches
+1.  Outstanding Issues
+    a. Our JS event code isn't running
+    b. Our Express server isn't doing anything
+    c. Our Production Build isn't setup
+
+2. Fixing our Functionality
+    - Webpack tries to keep the global scope clean. Webpack puts all our code into encapsulated little libraries using IIFE's. To fix our scripts, we need to access the global scope to listen for events 
+    - Add a new section in `module.exports` as:
+    ```
+    output: {
+        libraryTarget: 'var',
+        library: 'Client'
+    },
+    ```
+    - In `client/index.js`, export JS scripts in use
+    - In the `client/views/index.html`, call the functions with the prefixed library name set above: e.g. `handleSubmit` -> `Client.handleSubmit`
+    - We can't have two apps running on the same port, so change the port number (`8080`) in the fetch request:
+    ``` 
+    fetch('http://localhost:8081/test')
+    .then(res => {
+        return res.json()
+    })
+    .then(function(data) {
+        document.getElementById('results').innerHTML = data.message
+    })
+    ```
+    - Change the port number in `server/index.js` to `8081` as well:
+    ```
+    // designates what port the app will listen to for incoming requests
+    app.listen(8081, function () {
+        console.log('Example app listening on port 8081!')
+    })
+    ```
+    - Run both builds: dev on 8080, prod on 8081
