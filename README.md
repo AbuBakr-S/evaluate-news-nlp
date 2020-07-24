@@ -60,7 +60,7 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
     - Install Babel to allow the use of `import` (ES6):
     `npm i -D @babel/core @babel/preset-env babel-loader`
     - Create a new file .babelrc in the root of the project. Fill it with this code:
-    `{ ‘presets’: ['@babel/preset-env'] }`
+    `{ "presets": ["@babel/preset-env"] }`
     - Add Babel Loader to `webpack.config.js`
     ```
     module: {
