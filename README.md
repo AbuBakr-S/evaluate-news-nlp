@@ -203,3 +203,34 @@ A web tool that allows users to run Natural Language Processing (NLP) on article
     })
     ```
     - Run both builds: dev on 8080, prod on 8081
+
+3. Webpack for Production
+    - For a better production build, minify all JS and styles. Webpack does this by default for JS
+    - Currently all our styles are inline - inline styles are slow
+        a. Install Mini CSS extract plugin:
+        `npm i -D mini-css-extract-plugin`
+        b. Add the plugin - webpack.prod.js:
+        `const MiniCssExtractPlugin = require('mini-css-extract-plugin')`
+        c. Add the loader to `module.exports`. This will extract the CSS into it's own file (`main.css`) in the `dist` folder which will be minified later
+        ```
+        {
+            test: /\.scss$/,
+            use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        }
+        ```
+        d. Instantiate the new plugin in the plugin list:
+        `new MiniCssExtractPlugin({ filename: "[name].css" })`
+        e. Install the Terser and Optimise CSS Assets plugins to minify the `main.css` file
+        `npm i -D optimize-css-assets-webpack-plugin terser-webpack-plugin`
+        f. Add the plugins - webpack.prod.js:
+        ```
+        const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+        const TerserPlugin = require('terser-webpack-plugin')
+        ```
+        g. Add the optimization attribute in `module.exports` section, that will help us to minimize certain files. Notice that the `TerserPlugin` and `OptimizeCSSAssetsPlugin` are being initialised here:
+        ```
+        optimization: {
+        minimizer: [new TerserPlugin({}), new OptimizeCSSAssetsPlugin({})],
+        },
+        ```
+        h. `npm run build-prod`
