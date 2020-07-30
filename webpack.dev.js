@@ -1,7 +1,7 @@
-const path = require('path')
+const path = require('path')        // The Path module provides a way of working with directories and file paths
 const webpack = require('webpack')
-const HtmlWebPackPlugin = require("html-webpack-plugin")
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebPackPlugin = require("html-webpack-plugin")        // Includes webpack bundles in the body using script tags with dynamic referencing
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')      //This plugin will remove all files inside webpack's output.path directory, as well as all unused webpack assets after every successful rebuild
 
 module.exports = {
     entry: './src/client/index.js',
