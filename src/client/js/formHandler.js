@@ -8,7 +8,8 @@ function handleSubmit(event) {
     fetch('http://localhost:8081/test')
     .then(res => res.json())
     .then(function(res) {
-        document.getElementById('results').innerHTML = res.message
+        // TODO: Change this to the "analyse-text" data
+        document.getElementById('name').innerHTML = res.message
     })
 }
 
