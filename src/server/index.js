@@ -1,14 +1,20 @@
+// Allows use of environment variables
 const dotenv = require('dotenv');
 dotenv.config();
 
 var path = require('path');
+
+// Require Express to run server and routes
 const express = require('express');
+
+// Axios is a promise based HTTP client for the browser and Node. js. Axios makes it easy to send asynchronous HTTP requests to REST endpoints and perform CRUD operations
 var axios = require("axios");
 
+// Start up an instance of app
 const app = express();
 
 /* Middleware*/
-//Here we are configuring express to use body-parser as middle-ware.
+// Here we are configuring express to use body-parser as middle-ware
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -17,6 +23,7 @@ app.use(bodyParser.json());
 const cors = require('cors');
 app.use(cors());
 
+// Initialise the main project folder
 app.use(express.static('dist'));
 
 console.log(__dirname);
