@@ -34,8 +34,9 @@ app.get('/', function (req, res) {
 })
 
 // Designates what port the app will listen to for incoming requests
+// You can’t run two apps on the same port at the same time. If webpack is running on port 8080, use another port e.g. 8081
 app.listen(8081, function () {
-    console.log('Example app listening on port 8081!');
+    console.log('Example app listening on port 8081!');     // 
 })
 
 app.get("/test", function (req, res){
