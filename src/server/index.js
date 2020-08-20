@@ -5,18 +5,15 @@ dotenv.config();
 // Setup empty JS object to act as endpoint for all routes
 const projectData = {};
 
-var path = require('path');
-
 // Require Express to run server and routes
 const express = require('express');
-
 // Start up an instance of app
 const app = express();
 
 /* Middleware Dependencies - Express*/
 const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));       // Set to true as the API requires input data to be urlencoded
+app.use(bodyParser.json());     // Returns middleware that only parses json
 
 // Cors for cross origin allowance - allows the browser and server to communicate without any security interruptions
 const cors = require('cors');
