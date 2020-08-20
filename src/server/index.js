@@ -2,6 +2,9 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
+// Setup empty JS object to act as endpoint for all routes
+const projectData = {};
+
 var path = require('path');
 
 // Require Express to run server and routes
@@ -9,9 +12,6 @@ const express = require('express');
 
 // Start up an instance of app
 const app = express();
-
-// Axios is a promise based HTTP client for the browser and Node. js. Axios makes it easy to send asynchronous HTTP requests to REST endpoints and perform CRUD operations
-var axios = require("axios");
 
 /* Middleware Dependencies - Express*/
 const bodyParser = require('body-parser');
@@ -36,22 +36,5 @@ app.get('/', function (req, res) {
 // Designates what port the app will listen to for incoming requests
 // You can’t run two apps on the same port at the same time. If webpack is running on port 8080, use another port e.g. 8081
 app.listen(8081, function () {
-    console.log('Example app listening on port 8081!');     // 
-})
-
-app.get("/test", function (req, res){
-    let projectData = {};
-    const name = req.query.name;
-    axios.post(`https://api.meaningcloud.com/sentiment-2.1?key=${process.env.API_KEY}&of=json&txt=${name}&model=general&lang=en`, {})
-    .then(function (response){
-        const result = response.data; 
-        projectData["sentence"] = name;
-        projectData["subjectivity"]= result.subjectivity; 
-        res.json(projectData);
-        res.end();
-    }) 
-    .catch (function (error) {
-        console.log(error);
-        res.end();
-    })
+    console.log('Example app listening on port 8081!');
 })

@@ -5,7 +5,7 @@ function handleSubmit(event) {
     let formText = document.getElementById('analyse-text').value;
 
     console.log("::: Form Submitted :::");
-    fetch(`http://localhost:8081/test?name=${formText}`)
+    fetch(`http://localhost:8081/test`)
     .then(res => res.json())
     .then(function(res) {
         // This is the confidence rating by semantic analysis api
