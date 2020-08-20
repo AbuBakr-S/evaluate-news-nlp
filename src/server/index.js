@@ -22,9 +22,6 @@ app.use(cors());
 // Initialise the main project folder, connecting server-side with client side
 app.use(express.static('dist'));
 
-// A node script that returns the path of the folder where the current JavaScript file resides.
-console.log(__dirname);
-
 // Home route pointing to index.html in dist folder for the client
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html');
