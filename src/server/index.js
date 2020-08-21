@@ -2,11 +2,11 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-// Setup empty JS object to act as endpoint for all routes
-const projectData = {};
-
 // Require Express to run server and routes
 const express = require('express');
+
+var axios = require('axios');
+
 // Start up an instance of app
 const app = express();
 
@@ -31,4 +31,22 @@ app.get('/', function (req, res) {
 // You can’t run two apps on the same port at the same time. If webpack is running on port 8080, use another port e.g. 8081
 app.listen(8081, function () {
     console.log('Example app listening on port 8081!');
+})
+
+// Route to retrieve input text query param from FE to BE
+app.get('/analysis', function (req, res) {
+   let data = {};       // This is my data repository
+   const text = req.query.text;     // Use the request.query object to access the query string parameter passed in the URL
+   axios.post(`https://api.meaningcloud.com/sentiment-2.1?key=${process.env.API_KEY}&of=json&txt=${text}&model=general&lang=en`, {})
+   .then(function (response){
+       const result = response.data; 
+       data["sentence"] = text;
+       data["subjectivity"] = result.subjectivity; 
+       res.json(data);
+       res.end();       // Ends the response process
+   }) 
+   .catch (function (error) {
+       console.log(error);
+       res.end();
+   })
 })
