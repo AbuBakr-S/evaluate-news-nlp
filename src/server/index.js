@@ -5,8 +5,6 @@ dotenv.config();
 // Require Express to run server and routes
 const express = require('express');
 
-var axios = require('axios');
-
 // Start up an instance of app
 const app = express();
 
@@ -33,20 +31,12 @@ app.listen(8081, function () {
     console.log('Example app listening on port 8081!');
 })
 
-// Route to retrieve input text query param from FE to BE
-app.get('/analysis', function (req, res) {
-   let data = {};       // This is my data repository
-   const text = req.query.text;     // Use the request.query object to access the query string parameter passed in the URL
-   axios.post(`https://api.meaningcloud.com/sentiment-2.1?key=${process.env.API_KEY}&of=json&txt=${text}&model=general&lang=en`, {})
-   .then(function (response){
-       const result = response.data; 
-       data["sentence"] = text;
-       data["subjectivity"] = result.subjectivity; 
-       res.json(data);
-       res.end();       // Ends the response process
-   }) 
-   .catch (function (error) {
-       console.log(error);
-       res.end();
-   })
-})
+// TEST
+
+app.get("/test", function (req, res){
+    let projectData = {};
+    const text = req.query.text;
+    projectData["sentence"] = text;
+    // API Response:    projectData["subjectivity"]= result.subjectivity; 
+    console.log(projectData);
+ })
