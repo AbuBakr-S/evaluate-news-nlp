@@ -31,5 +31,12 @@ app.listen(8081, function () {
     console.log('Example app listening on port 8081!');
 })
 
-// Using a query string parameter/value to access the input text
-const text = req.query.text;     // Use the request.query object to access the query string parameter passed in the URL
+// TEST
+
+app.get("/test", function (req, res){
+    let projectData = {};
+    const text = req.query.text;
+    projectData["sentence"] = text;
+    // API Response:    projectData["subjectivity"]= result.subjectivity; 
+    console.log(projectData);
+ })
