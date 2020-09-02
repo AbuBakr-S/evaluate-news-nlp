@@ -39,4 +39,12 @@ app.get("/test", function (req, res){
     projectData["sentence"] = text;
     // API Response:    projectData["subjectivity"]= result.subjectivity; 
     console.log(projectData);
+
+    /* Testing Server Side API Request */
+    const encodedText = encodeURIComponent(text); 
+    fetch(`https://api.meaningcloud.com/sentiment-2.1?key=${process.env.API_KEY}&of=json&txt=${encodedText}&model=general&lang=en`)
+    .then(res => res.json())
+    .then(function(res) {
+        console.log(res.body);
+    });
  })
