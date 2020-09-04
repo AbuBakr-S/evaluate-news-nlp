@@ -8,6 +8,9 @@ const express = require('express');
 // Start up an instance of app
 const app = express();
 
+// Install fetch
+const fetch = require('node-fetch');
+
 /* Middleware Dependencies - Express*/
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));       // Set to true as the API requires input data to be urlencoded
@@ -31,8 +34,7 @@ app.listen(8081, function () {
     console.log('Example app listening on port 8081!');
 })
 
-// TEST
-
+/* ##### TEST #####
 app.get("/test", function (req, res){
     let projectData = {};
     const text = req.query.text;
@@ -40,7 +42,6 @@ app.get("/test", function (req, res){
     // API Response:    projectData["subjectivity"]= result.subjectivity; 
     console.log(projectData);
 
-    /* Testing Server Side API Request */
     const encodedText = encodeURIComponent(text); 
     fetch(`https://api.meaningcloud.com/sentiment-2.1?key=${process.env.API_KEY}&of=json&txt=${encodedText}&model=general&lang=en`)
     .then(res => res.json())
@@ -48,3 +49,19 @@ app.get("/test", function (req, res){
         console.log(res.body);
     });
  })
+ */
+
+ app.post("/test", async function (req, res) {
+    const app_key = process.env.API_KEY;
+    const apiUrl = `https://api.meaningcloud.com/sentiment-2.1?key=${app_key}&text=${req.body.url}&lang=en`;
+    let response = await fetch(apiUrl);
+    let data = await response.json();
+    
+    const evaluation = {};
+    evaluation.polarity = data.score_tag;
+    evaluation.agreement = data.agreement;
+    evaluation.irony = data.irony;
+    evaluation.subjectivity = data.subjectivity;
+    evaluation.confidence = data.confidence;
+    res.send(evaluation);
+})
