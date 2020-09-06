@@ -53,7 +53,7 @@ app.get("/test", function (req, res){
 
  app.post("/test", async function (req, res) {
     const app_key = process.env.API_KEY;
-    const apiUrl = `https://api.meaningcloud.com/sentiment-2.1?key=${app_key}&text=${req.body.url}&lang=en`;
+    const apiUrl = `https://api.meaningcloud.com/sentiment-2.1?key=${app_key}&text=${req.body.text}&lang=en`;
     let response = await fetch(apiUrl);
     let data = await response.json();
     
@@ -64,4 +64,6 @@ app.get("/test", function (req, res){
     evaluation.subjectivity = data.subjectivity;
     evaluation.confidence = data.confidence;
     res.send(evaluation);
+    // this is the data we want
+    console.log(req.body); 
 })
