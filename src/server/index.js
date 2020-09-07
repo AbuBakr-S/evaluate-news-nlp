@@ -34,24 +34,7 @@ app.listen(8081, function () {
     console.log('Example app listening on port 8081!');
 })
 
-/* ##### TEST #####
-app.get("/test", function (req, res){
-    let projectData = {};
-    const text = req.query.text;
-    projectData["sentence"] = text;
-    // API Response:    projectData["subjectivity"]= result.subjectivity; 
-    console.log(projectData);
-
-    const encodedText = encodeURIComponent(text); 
-    fetch(`https://api.meaningcloud.com/sentiment-2.1?key=${process.env.API_KEY}&of=json&txt=${encodedText}&model=general&lang=en`)
-    .then(res => res.json())
-    .then(function(res) {
-        console.log(res.body);
-    });
- })
- */
-
- app.post("/test", async function (req, res) {
+ app.post("/analyse", async function (req, res) {
     const app_key = process.env.API_KEY;
     const apiUrl = `https://api.meaningcloud.com/sentiment-2.1?key=${app_key}&of=json&txt=${req.body.text}&model=general&lang=en`;
     let response = await fetch(apiUrl);
