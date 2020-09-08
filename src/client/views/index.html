@@ -19,7 +19,8 @@
         <main>
             <section>
                 <form onsubmit="return Client.handleSubmit(event)">
-                    <textarea id="analyse-text" name="analyse-text" placeholder="Enter text to be analysed here:" rows="4" cols="50" required maxlength="500"></textarea>
+                    <textarea id="analyse-text" name="analyse-text" placeholder="Enter text to be analysed here:" rows="4" cols="50" required maxlength="500" onkeyup="return Client.charCountUpdate()"></textarea>
+                    <span id=char-count>Counter</span>
                     <input type="submit" value="submit" onsubmit="return Client.handleSubmit(event)">
                 </form>
             <section>
