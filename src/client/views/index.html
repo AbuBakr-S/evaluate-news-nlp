@@ -8,19 +8,16 @@
     <body>
 
         <header>
-            <div class="">
-                Logo
-            </div>
-            <div class="">
-                navigation
-            </div>
+            
         </header>
 
         <main>
+            <h1>Evaluate News Article with Natural Language Processing</h1>
+
             <section>
                 <form onsubmit="return Client.handleSubmit(event)">
-                    <textarea id="analyse-text" name="analyse-text" placeholder="Enter text to be analysed here:" rows="4" cols="50" required maxlength="500" onkeyup="return Client.charCountUpdate()"></textarea>
-                    <span id=char-count>Counter</span>
+                    <textarea id="analyse-text" name="analyse-text" placeholder="Enter news article extract to be analysed here:" rows="4" cols="50" required maxlength="500" onkeyup="return Client.charCountUpdate()"></textarea>
+                    <span id=char-count>Characters Count: 0/500</span>
                     <input type="submit" value="submit" onsubmit="return Client.handleSubmit(event)">
                 </form>
             <section>
