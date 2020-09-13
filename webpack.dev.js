@@ -2,7 +2,6 @@ const path = require('path')        // The Path module provides a way of working
 const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")        // Includes webpack bundles in the body using script tags with dynamic referencing
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')      //This plugin will remove all files inside webpack's output.path directory, as well as all unused webpack assets after every successful rebuild
-const WorkboxPlugin = require('workbox-webpack-plugin')
 
 module.exports = {
     entry: './src/client/index.js',
@@ -45,7 +44,6 @@ module.exports = {
             // Automatically remove all unused webpack assets on rebuild
             cleanStaleWebpackAssets: true,
             protectWebpackAssets: false
-        }),
-        new WorkboxPlugin.GenerateSW()
+        })
     ]
 }
