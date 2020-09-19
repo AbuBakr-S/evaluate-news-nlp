@@ -4,36 +4,37 @@
         <meta charset="utf-8">
         <title>Test</title>
     </head>
-
     <body>
 
         <header>
-            <p>This is the header</p>
+            <h1>Evaluate News Article with Natural Language Processing</h1>
         </header>
 
         <main>
-            <h1>Evaluate News Article with Natural Language Processing</h1>
-
-            <section>
-                <form onsubmit="return Client.handleSubmit(event)">
-                    <textarea id="analyse-text" name="analyse-text" placeholder="Enter news article extract to be analysed here:" rows="4" cols="50" required maxlength="500" onkeyup="return Client.charCountUpdate()"></textarea>
-                    <span id=char-count>Characters Count: 0/500</span>
-                    <input type="submit" value="Submit" onsubmit="return Client.handleSubmit(event)">
-                </form>
-            <section>
-
-            <section>
-                <strong>Form Results:</strong>
-                <div id="polarity"></div>
-                <div id="confidence"></div>
-                <div id="subjectivity"></div>
-                <div id="agreement"></div>
-                <div id="irony"></div>
-            </section>
+            <!-- Test Grid -->
+            <div class="grid-container">
+                <section class="item1">
+                    <form onsubmit="return Client.handleSubmit(event)">
+                        <textarea id="analyse-text" name="analyse-text" placeholder="Enter news article extract to be analysed here:" rows="4" cols="50" required maxlength="500" onkeyup="return Client.charCountUpdate()"></textarea>
+                        <span id=char-count>Characters Count: 0/500</span>
+                        <br>
+                        <input type="submit" value="Submit" onsubmit="return Client.handleSubmit(event)">
+                    </form>
+                </section>
+                <section class="item2">
+                    <strong>Form Results:</strong>
+                    <div id="polarity"></div>
+                    <div id="confidence"></div>
+                    <div id="subjectivity"></div>
+                    <div id="agreement"></div>
+                    <div id="irony"></div>
+                </section>
+            </div>
         </main>
 
         <footer>
             <p>This is a footer</p>
+            <i class="fab fa-twitter-square"></i>
         </footer>
 
         <script>
