@@ -4,6 +4,7 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'Raleway', sans-serif;
+    font-size: 16px;
     max-width: 1200px;
     margin: 0 auto;
     background-color: #82C0CC;
@@ -11,6 +12,7 @@ body {
 
 main {
     background-color: #ede7e3;
+    padding: 20px 80px;
 }
 
 .grid-container {

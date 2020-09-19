@@ -1,5 +1,16 @@
 footer {
     background-color: #16697a;
     color: #ede7e3;
-    height: 200px;
+}
+
+.social {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+
+.fab {
+    font-size: 3em;
+    color: #000;
 }
