@@ -5,7 +5,6 @@ function handleSubmit(event) {
     let formText = document.getElementById('analyse-text').value;
     console.log('::: Form Submitted :::');
 
-
     fetch('http://localhost:8081/analyse', {
         method: 'POST',
         credentials: 'same-origin',

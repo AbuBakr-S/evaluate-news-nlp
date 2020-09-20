@@ -1,5 +1,5 @@
 import { handleSubmit } from './js/formHandler'
-import { charCountUpdate } from './js/formValidation'
+import { charCountUpdate } from './js/formCharLimit'
 
 import './styles/resets.scss'
 import './styles/base.scss'
