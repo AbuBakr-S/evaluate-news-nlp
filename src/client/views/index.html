@@ -16,7 +16,7 @@
             <div class="grid-container">
                 <section class="item1">
                     <form onsubmit="return Client.handleSubmit(event)">
-                        <textarea id="analyse-text" name="analyse-text" placeholder="Enter news article extract to be analysed here:" rows="4" cols="50" required maxlength="500" onkeyup="return Client.charCountUpdate()" oninput="return Client.inputValidation()"></textarea>
+                        <textarea id="analyse-text" name="analyse-text" placeholder="Enter news article extract to be analysed here:" rows="4" cols="50" required maxlength="500" onkeyup="return Client.charCountUpdate()" onblur="return Client.inputValidation()"></textarea>
                         <span id=char-count>Characters Count: 0/500</span>
                         <br>
                         <input type="submit" value="Submit" onsubmit="return Client.handleSubmit(event)">
