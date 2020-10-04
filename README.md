@@ -9,10 +9,10 @@ In this project, I have created a tool that allows users to run NLP on articles 
 - JavaScript ES6
 - Node
 
-## Project Pre-requisites
+## Project Components
 - Webserver - Node
 - Web application framework for routing - Express
-- Build tool - Webpack. Using webpack, we will set up the app to have dev and prod environments, each with their own set of tools and commands.
+- Build tool - Webpack. Prod and Dev environments
 - External script - Service Worker
 - External API - Meaning Cloud Sentiment Analysis
 

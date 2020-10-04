@@ -5,7 +5,7 @@ import { charCountUpdate } from "../src/client/js/formCharLimit"
 // A test suite may contain one or more related tests    
 describe("Testing the formCharLimit length", () => {
     // The test() function has two arguments - a string description, and an actual test as a callback function.  
-    test("The ormCharLimit length is more than or equal to 0", () => {
+    test("The formCharLimit length is more than or equal to 0", () => {
         // 2. Define the input for the function, if any, in the form of variables/array
         
 
